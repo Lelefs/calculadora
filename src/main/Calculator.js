@@ -61,22 +61,22 @@ export default () => {
 
     const displayValue = currentValue + n;
 
+    const newAttributes = {
+      ...attributes,
+      displayValue,
+      clearDisplay: false,
+    };
+
     if (n !== '.') {
       const i = attributes.current;
-      const newValue = parseFloat(displayValue);
       const values = [...attributes.values];
-      values[i] = newValue;
-      console.log(values);
-      //console.log(attributes.values);
-      setAttributes({
-        ...attributes,
-        values,
-        displayValue,
-        clearDisplay: false,
-      });
-    } else {
-      setAttributes({ ...attributes, displayValue, clearDisplay: false });
+      values[i] = parseFloat(displayValue);
+      newAttributes.values = values;
     }
+
+    setAttributes(newAttributes);
+
+    return;
   }
 
   return (
